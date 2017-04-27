@@ -1,0 +1,29 @@
+---
+title: "rPostgis"
+author: "Carlos Noronha"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{rPostgis}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Package rPostgis
+
+## Description
+Package responsible for fetching accident data into a postgres database and plots it in a chart. To the user.
+
+### load package and configuration with your database
+```{R}
+  library(rPostgis)
+
+  ##configDB(host, port, user, password, dbname)
+```
+
+
+### read the database and view graphic
+```{R}
+  leinfo("Carlos Noronha", "SP", 4, "carros")
+```
+

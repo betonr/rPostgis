@@ -1,0 +1,15 @@
+Package: rPostgis
+Title: Postgis data reporty
+Version: 0.1.0
+Authors@R: person("Carlos Alberto", "Noronha", email = "beto_noronha@live.com", role = c("aut", "cre"))
+Description: The package show Postgis database informations and plot in grafic the window. Your function main is 'leinfo', this read the data From the reported parameters.
+Depends: R (>= 3.3.1)
+License: GNU GPL v2
+URL: https://cran.r-project.org/package=rPostgis
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
+Imports: graphics
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
