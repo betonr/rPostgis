@@ -1,0 +1,24 @@
+---
+title: "ImportDataTest"
+author: "Carlos A. Noronha"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{ImportDataTest}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# Package rPostgis
+
+## Import data test in your database
+This package provides a data table, to test the application
+
+## Procedure
+1 - Accesses the package files and copy the file 'rPostgis/inst/extdata/tb_dados.sql';
+
+2 - In your database posgtres, create a database with 'Spatial extension' (POSTGIS);
+
+3 - Import this file 'tb_dados.sql' in your database;
+
+

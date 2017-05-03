@@ -4,28 +4,32 @@
 #' search the results in the database and
 #' plot one data graphic (bar) in the window
 #'
-#' @param \code{nome} (character) - user name
-#' @param \code{local} (list character) - UF desired
-#' @param \code{tempo} (int) - amount of previous days
-#' @param \code{tipos} (character) - vehicle
+#' @param objectInfo (InfoDB) - Object with informations for connections
+#' @param nome (character) - user name
+#' @param local (character) - UF desired
+#' @param tempo (int) - amount of previous days
+#' @param tipo (character) - vehicle
 #'
 #' @examples
-#' leinfo("Carlos Noronha", "SP", 2, "carros")
+#' con <- configDB("localhost", "5432", "postgres", "1234", "db_lingR")
+#' leinfo(con, "Carlos Noronha", "SP", 2, "carros")
 #' name <- "Carlos"
 #' days <- 2
-#' leinfo(name, "SP", days, "motos")
+#' leinfo(con, name, "SP", days, "motos")
 #'
 #' \dontrun{
-#' leinfo("Carlos Noronha", "SP", 2)
+#' leinfo(con, "Carlos Noronha", "SP", 2)
 #' leinfo("Carlos Noronha", "SP", "carros")
-#' leinfo("Carlos Noronha", 2, "carros")
-#' leinfo("SP", 2, "carros")
+#' leinfo("host", Carlos Noronha", 2, "carros")
+#' leinfo("con", SP", 2, "carros")
 #' }
+#'
+#' @usage leinfo(objectInfo, nome, local, tempo, tipo)
 #'
 #' @export
 setGeneric(
   name = "leinfo",
-  def = function(nome, local, tempo, tipo){
+  def = function(objectInfo, nome, local, tempo, tipo){
     standardGeneric("leinfo")
   }
 )
@@ -34,7 +38,7 @@ setGeneric(
 #' @exportMethod leinfo
 #' @importFrom graphics barplot
 #'
-setMethod("leinfo", c("character","character","numeric","character"), function(nome, local, tempo, tipo){
+setMethod("leinfo", c("InfoDB","character","character","numeric","character"), function(objectInfo, nome, local, tempo, tipo){
   if(local != "SP" && local != "RJ" && local != "PR" && local != "MT"){
       stop("Só temos informações dos estados de SP - RJ - PR - MT")
     }
@@ -50,7 +54,7 @@ setMethod("leinfo", c("character","character","numeric","character"), function(n
     listDate <- c()
     while(i<tempo){
       date <- format(Sys.Date()-i,"%Y-%m-%d")
-      res[i+1] <- readDB(date, tipo, local)
+      res[i+1] <- readDB(objectInfo, date, tipo, local)
       listDate[i+1] <- format(Sys.Date()-i,"%d")
       i <- i+1
     }

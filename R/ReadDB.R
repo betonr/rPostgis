@@ -1,18 +1,33 @@
+#' readDB
+#'
+#' function responsible for searching the database and
+#' returning numbers of occurrences on the select date
+#'
+#' @param objectInfo (InfoDB) - Object with informations for connections
+#' @param date (character) - amount of previous days (Y-m-d)
+#' @param type (character) - vehicle
+#' @param uf (int) - UF desired
+#'
+#' @return Number of occurrences (int)
+#'
 setGeneric(
   "readDB",
-  def = function(date, type, uf){
+  def = function(objectInfo, date, type, uf){
     standardGeneric("readDB")
   }
 )
 
-setMethod("readDB", c("character", "character", "character"), function(date, type, uf){
-  require(RPostgreSQL)
+#' @method readDB rPostgis
+#' @import RPostgreSQL
+#' @importFrom DBI dbDriver
+#'
+setMethod("readDB", c("InfoDB","character", "character", "character"), function(objectInfo, date, type, uf){
   con<-NULL
   if(is.null(con)){
-    driver <- dbDriver(InfoDB()@accessDriver)
-    con <- dbConnect(driver, host = InfoDB()@host, port = InfoDB()@port,
-                     user = InfoDB()@user, password = InfoDB()@password,
-                     dbname=InfoDB()@db
+    driver <- dbDriver(objectInfo@accessDriver)
+    con <- dbConnect(driver, host = objectInfo@host, port = objectInfo@port,
+                     user = objectInfo@user, password = objectInfo@password,
+                     dbname=objectInfo@db
     )
   }
   on.exit(dbDisconnect(con))
@@ -22,5 +37,5 @@ setMethod("readDB", c("character", "character", "character"), function(date, typ
   numR <- nrow(res)+0
 
   return(numR)
-  }
-)
+
+})

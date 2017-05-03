@@ -18,12 +18,12 @@ Package responsible for fetching accident data into a postgres database and plot
 ```{R}
   library(rPostgis)
 
-  ##configDB(host, port, user, password, dbname)
+  con <- configDB("localhost", "5432", "postgres", "root", "db_lingR")
 ```
 
 
 ### read the database and view graphic
 ```{R}
-  leinfo("Carlos Noronha", "SP", 4, "carros")
+  leinfo(con, "Carlos Noronha", "SP", 4, "carros")
 ```
 
