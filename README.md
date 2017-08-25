@@ -1,2 +1,2 @@
 # rPostgis
-pacote de conexão com banco de dados (postgres-posgis) via linguagem R - testes
+pacote de conexão com banco de dados (postgres-posgis) via linguagem R com RpostgreSQL
